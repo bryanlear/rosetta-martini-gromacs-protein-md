@@ -1,0 +1,26 @@
+# PyRosetta and dependencies for protein structure analysis
+
+# Core requirement - requires academic license
+# See INSTALLATION.md for setup instructions
+# pyrosetta
+
+# Optional: For easier installation
+pyrosetta-installer
+
+# Utility packages
+numpy>=1.21.0
+pandas>=1.3.0
+
+# Visualization (optional)
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# BioPython for PDB manipulation (optional)
+biopython>=1.79
+
+# Structure analysis tools (optional)
+# pymol-open-source  # Uncomment if you want PyMOL integration
+
+# Note: Install PyRosetta first using instructions in INSTALLATION.md
+# Then install other requirements:
+#   pip install -r requirements.txt

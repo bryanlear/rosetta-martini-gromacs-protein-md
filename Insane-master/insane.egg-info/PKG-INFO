@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: insane
+Version: 1.2.0
+Summary: A versatile tool for building membranes and/or solvent with proteins.
+Home-page: https://github.com/Tsjerk/Insane
+Author: Tsjerk A. Wassenaar
+License: GPLv2
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 3
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: simopt>=0.4.0
+Dynamic: author
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
