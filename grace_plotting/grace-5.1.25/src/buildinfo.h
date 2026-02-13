@@ -1,0 +1,15 @@
+#define BI_VERSION_ID 50125
+#define BI_VERSION "Grace-5.1.25"
+#define BI_GUI "none"
+#define BI_T1LIB "1.3.1p3-grace"
+#define BI_PNGLIB ""
+#define BI_LIBJPEG ""
+#define BI_LIBPDF ""
+#define BI_CCOMPILER "gcc -O2  -fno-common -Wall -Wpointer-arith -Wnested-externs -fno-strength-reduce -I.. -I. -I../T1lib/t1lib      ../cephes/libcephes.a   ../T1lib/libt1.a     -lm  "
+#define BI_SYSTEM "Darwin Darwin Kernel Version 25.2.0: Tue Nov 18 21:08:48 PST 2025; root:xnu-12377.61.12~1/RELEASE_ARM64_T8132 25.2.0 arm64"
+#define BI_DATE "Tue Feb 10 21:32:48 2026"
+
+#define GRACE_HOME "/usr/local/grace"
+#define GRACE_EDITOR "xterm -e vi"
+#define GRACE_PRINT_CMD "lp -c"
+#define GRACE_HELPVIEWER "mozilla %s"

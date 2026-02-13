@@ -1,0 +1,46 @@
+; ============================================================
+; MARTINI 3 FORCE FIELD
+; ============================================================
+#include "../../../martini_files/martini_v300/martini_v3.0.0.itp"
+
+; ============================================================
+; LIPID BONDED PARAMETER DEFINITIONS (required by v2 lipid ITPs)
+; ============================================================
+#include "../../../martini_files/M3-Lipid-Parameters-main/ITPs/martini_v3.0.0_ffbonded_v2.itp"
+
+; ============================================================
+; LIPID TOPOLOGIES
+; ============================================================
+#include "../../../martini_files/M3-Lipid-Parameters-main/ITPs/martini_v3.0.0_phospholipids_PC_v2.itp"
+#include "../../../martini_files/M3-Lipid-Parameters-main/ITPs/martini_v3.0.0_phospholipids_PE_v2.itp"
+#include "../../../martini_files/M3-Lipid-Parameters-main/ITPs/martini_v3.0.0_phospholipids_PS_v2.itp"
+#include "../../../martini_files/M3-Lipid-Parameters-main/ITPs/martini_v3.0.0_sterols_v1.itp"
+
+; ============================================================
+; SOLVENT & IONS
+; ============================================================
+#include "../../../martini_files/martini_v3.0.0_solvents_v1.itp"
+#include "../../../martini_files/martini_v3.0.0_ions_v1.itp"
+
+; ============================================================
+; PROTEIN TOPOLOGY (martinize2 output)
+; ============================================================
+#include "../martinize2_output/molecule_0.itp"
+
+[ system ]
+; name
+SCN5A_RxxxH in POPC/POPE/POPS/CHOL bilayer
+
+[ molecules ]
+; name            number
+molecule_0           1
+POPC               182
+POPE                60
+CHOL               121
+POPC               115
+POPE                86
+POPS                28
+CHOL               115
+W                52594
+NA                 615
+CL                 544
