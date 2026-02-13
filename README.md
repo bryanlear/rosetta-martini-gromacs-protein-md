@@ -21,7 +21,7 @@ python mutation_analysis.py --pdb scn5a_af.pdb --position xxx --mutation His
 
 ***Coarse-graining (CG)**:modeling technique (multiscale) that reduces degrees of freedom in a system by grouping several atoms into a single representative bead/interaction center. Allows for simulation of much larger systems over significantly longer timescales ($\mu s$ to $ms$) than are possible with all-atom (AA) models.*
 
-*`martinize2` converts all-atom (AA) coordinates into a CG representation compatible with the `Martini 3` force field. This defines the physical behaviour of the R376H variant in the GROMACS simulation environment.*
+*`martinize2` converts all-atom (AA) coordinates into a CG representation compatible with the `Martini 3` force field. This defines the physical behaviour of the RxxxH variant in the GROMACS simulation environment.*
 
 The resulting protein is mapped to a CG representation using `martinize2` to extend simulation timescales to the microsecond range.
 
