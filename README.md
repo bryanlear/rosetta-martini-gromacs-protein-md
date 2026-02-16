@@ -254,6 +254,10 @@ THE system was gradually equilibrated to gently relax WT structure by slowly inc
 
 Comparison of $10$ $ns$ production trajectories for WT and mutant systems:
 
+### Principal Component
+
+![PCA](protein_simulations/variant_1/results/22_pca_3d_pc1_pc2_pc3.png)
+
 ---
 
 ### Structural Stability
