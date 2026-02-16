@@ -6,7 +6,13 @@ This repository contains a multi-scale computational workflow designed to substa
 
 The main target is to provide a mechanistic basis for variants previously classified as pathogenic within the pipeline's Bayesian scoring framework.
 
-![wt](protein_simulations/variant_1/targeta_res.png)
+### Wild-Type:
+
+![wt](protein_simulations/variant_1/wild_type_final.png)
+
+### Mutant:
+
+![wt](protein_simulations/variant_1/mutant_final.png)
 
 ## Methodology
 
@@ -188,48 +194,120 @@ $$\nabla V(\mathbf{r}_1, \mathbf{r}_2, \dots, \mathbf{r}_N) = 0$$
 
 ---
 
-### Up to this point all computation had been done on Apple silicon 10-12 CPUS (M4,32GB and M2,16GB RAM, respectively). Small soluble proteins were simulated on an Ubuntu machine with 8 CPUs, GPU RTX 3060 mobile, 40GB RAM.
-
-### For an all-atom NVT and NPT - followed by unrestrained equilibration and lastly production - this approach was not feasible since it would take many hours/days maxing out all cores on Apple silicon and would most likely overheat the Ubuntu machine (while maxing out CPU and GPU usage) after just a couple of hours.
-
-### I therefore moved to an Ubuntu cloud instance with GPU H100 Hopper, 16 CPUs, 200GB RAM 🥵😮‍💨
+***Up to this point all computation had been done on Apple silicon (M4 with 10 CPUs and 32GB RAM; M2 with 12 CPUs and 16GB RAM). Small soluble proteins were simulated on an Ubuntu machine with 8 CPUs, RTX 3060 GPU, and 40GB RAM.
+For an all-atom NVT and NPT ensembles - followed by unrestrained equilibration and lastly production - this approach was not feasible as it would take several days on that hardware.
+The remaining tasks were completed on Ubuntu cloud instance with an H100 Hopper GPU, 16 CPUs, and 200GB RAM.***
 
 ---
 
 *After CG2AT, the result is a new physical model (all-atom CHARMM36) with new degrees of freedom, new constraints, and new local geometry. This system is a **higher-resolution** of the same state, i.e, it is a different Hamiltonian and a different coordinate representation.*
 
-e.g., 
+EM and equilibration are needed again because CG averages out the fine details such as hydrogen bond geometries, salt bridge distances, etc. After reconstruction, all these degrees of freedom are introduced but their initial baselines are rather approximations. This ensures that any final interpretation of the results is not due to a back mapping artifact. 
 
+...
 
-**NPT (restrained):**
+## PRODUCTION MUTANT:
 
-| Energy Component | Value (kJ/mol) |
-| :--- | :--- |
-| Bond | $6.74125 \times 10^{4}$ |
-| U-B | $2.90969 \times 10^{5}$ |
-| Proper Dih. | $2.25762 \times 10^{5}$ |
-| Improper Dih. | $6.01497 \times 10^{3}$ |
-| CMAP Dih. | $-2.38950 \times 10^{3}$ |
-| LJ-14 | $5.17442 \times 10^{4}$ |
-| Coulomb-14 | $2.96708 \times 10^{5}$ |
-| LJ (SR) | $7.51931 \times 10^{5}$ |
-| Coulomb (SR) | $-1.08146 \times 10^{7}$ |
-| Coul. recip. | $3.66863 \times 10^{4}$ |
-| Position Rest. | $1.97214 \times 10^{4}$ |
-| Potential | $-9.07004 \times 10^{6}$ |
-| Kinetic En. | $1.97720 \times 10^{6}$ |
-| Total Energy | $-7.09284 \times 10^{6}$ |
-| Conserved En. | $-6.99197 \times 10^{6}$ |
+| Stage                      | Sim. Time | Steps       | dt (ps) | Wall Clock     | Performance   | Start → Finish                      |
+|----------------------------|-----------|-------------|---------|----------------|---------------|--------------------------------------|
+| Energy Minimization        | —         | 50,000 max  | —       | ~13 min        | —             | Feb 12, 20:00 → 20:14               |
+| NVT Equilibration          | 0.5 ns    | 250,000     | 0.002   | ~1 min 46 s    | 1.17 ns/day*  | Feb 12, 21:28 → 21:30               |
+| NPT Restrained             | 5.0 ns    | 2,500,000   | 0.002   | ~2 h 12 min    | 54.5 ns/day   | Feb 14 (logged in npt_run.log)       |
+| NPT Unrestrained           | 6.0 ns    | 3,000,000   | 0.002   | 3 h 01 min     | 47.8 ns/day   | Feb 14, 23:05 → Feb 15, 02:06       |
+| **Production**             | **10.0 ns** | **5,000,000** | **0.002** | **5 h 17 min** | **45.4 ns/day** | **Feb 15, 02:45 → 08:02**       |
 
-| Thermodynamic Property | Value |
-| :--- | :--- |
-| Temperature | 310.013 K |
-| Pressure | 0.706757 bar |
-| Constr. rmsd | 0.00000 |
-| Box-X | 15.1717 nm |
-| Box-Y | 15.1717 nm |
-| Box-Z | 31.7795 nm |
+- Total Simulation Wall Time: ~10 h 44 min  
+- Total Simulated Time: 21.5 ns (0.5 + 5.0 + 6.0 + 10.0 ns)
 
-- Performance: 50.3 ns/day
-- Completed 1 ns in ~29 min on H100.
-- **For context** this would have taken ~20 hours on Apple Silicon maxing out all CPUs (probably I don't fact check).
+## PRODUCTION WILD-TYPE:
+
+Rather than repeating the entire CG $\rightarrow$ AA pipeline for the WT, I did a back mutation. Using the final equilibrated mutant production frame and replacing the mutant residue with the wt. THe placement of the wt residue caused steric clashes with the surrouning atoms.
+THE system was gradually equilibrated to gently relax WT structure by slowly increasing timesteps and introduction of pressure. $4$ equilibration stages were used before produciton:
+
+| Stage | Ensemble | $dt$ (fs) | Duration | Barostat | $\tau_p$ (ps) | LINCS (Iter/Order) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Energy Min** | N/A | N/A | 18 steps | None | N/A | N/A |
+| **Stage 1: NVT Relaxation** | NVT | 0.5 | 100 ps | None | N/A | 2 / 6 |
+| **Stage 2a: Pressure Intro** | NPT | 0.5 | 50 ps | Berendsen | 20.0 | 2 / 6 |
+| **Stage 2b: Intermediate** | NPT | 1.0 | 100 ps | Berendsen | 10.0 | 2 / 6 |
+| **Stage 3: NPT Equilibration** | NPT | 1.0 | 1 ns | C-rescale | 5.0 | 2 / 6 |
+| **Production Run** | NPT | 2.0 | 10 ns | C-rescale | 5.0 | N/A |
+
+| Parameter | Value |
+|-----------|-------|
+| dt | 2.0 fs |
+| Duration | 10 ns (5,000,000 steps) |
+| Barostat | C-rescale, semiisotropic, τ_p = 5.0 ps |
+| Thermostat | V-rescale, τ = 1.0 ps, T = 310 K |
+| Position restraints | **None** (unrestrained production) |
+| GPU update | Yes (enabled after confirming equilibration stability) |
+| Performance | **49.8 ns/day** |
+| Average Temperature | 310.03 K |
+| Average Pressure | 1.40 bar |
+| Average Potential Energy | −9.120 × 10⁶ kJ/mol |
+| Average Density | 1018.0 kg/m³ |
+| Box Dimensions | 15.63 × 15.63 × 30.00 nm |
+| Total Atoms | 743,194 |
+| Energy drift | 2.43 × 10⁻⁴ kJ/mol/ps per atom |
+
+## WT vs. Mutant
+
+Comparison of $10$ $ns$ production trajectories for WT and mutant systems:
+
+---
+
+### Structural Stability
+
+Backbone RMSD over production run $\rightarrow$ mutant shows higher deviation from starting structure. May indicate reduced conformational stability.
+![RMSD Backbone](protein_simulations/variant_1/results/01_rmsd_backbone_comparison.png)
+
+### Per-Residue Flexibility
+
+RMSF per residue.
+
+![RMSF Comparison](protein_simulations/variant_1/results/02_rmsf_comparison.png)
+
+Zoomed in view around mutation site
+
+![RMSF Mutation Site Zoom](protein_simulations/variant_1/results/02b_rmsf_mutation_site_zoom.png)
+
+### Radius of Gyration
+
+Compactness of protein over time. 
+
+Larger $R_g$ in mutant $\Rightarrow$ partial unfolding or domain separation
+
+![Rg Comparison](protein_simulations/variant_1/results/03_rg_comparison.png)
+
+### Backbone Dihedral Landscape (Ramachandran)
+
+![Ramachandran Difference](protein_simulations/variant_1/results/04b_ramachandran_difference.png)
+Red density in areas that are usually less populated more support that mutation increases backbone flexibility.
+
+### Hydrogen Bonds
+
+Intramolecular hydrogen bonds over time
+
+![H-bonds Comparison](protein_simulations/variant_1/results/05_hbonds_comparison.png)
+
+### Thermo properties
+
+Potential energy, temperature, pressure, and density for both systems
+
+![Potential Energy](protein_simulations/variant_1/results/06_potential_energy_comparison.png)
+
+![Temperature](protein_simulations/variant_1/results/07_temperature_comparison.png)
+
+![Pressure](protein_simulations/variant_1/results/08_pressure_comparison.png)
+
+![Density](protein_simulations/variant_1/results/09_density_comparison.png)
+
+### System-lvl specs
+
+Total energy, area per lipid, box dimensions over production trajectory
+
+![Total Energy](protein_simulations/variant_1/results/12_total_energy_comparison.png)
+
+![Area Per Lipid](protein_simulations/variant_1/results/14_apl_comparison.png)
+
+![Box Dimensions](protein_simulations/variant_1/results/15_box_dimension_comparison.png)
