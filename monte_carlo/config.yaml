@@ -1,0 +1,78 @@
+# ============================================================
+# HREMC Configuration
+# Hamiltonian Replica Exchange Monte Carlo for SCN5A Nav1.5
+# Martini 3 CG with Go-model
+# ============================================================
+
+# --- System info ---
+system:
+  protein_name_wt: "Protein_wt"
+  protein_name_mutant: "Protein_mutant"
+  temperature: 310.0          # K — physical temperature
+  go_eps_native: 9.414        # kJ/mol — native Go epsilon from martinize2
+
+# --- Replica ladder ---
+replicas:
+  n_replicas: 12
+  # Lambda scales Go-contact epsilon: eps_i = lambda_i * go_eps_native
+  # lambda = 1.0 → native fold stability
+  # lambda = 0.5 → weakened contacts → enhanced sampling
+  lambda_min: 0.50
+  lambda_max: 1.00
+  spacing: "geometric"        # geometric | linear
+
+# --- MD segment parameters ---
+md_segment:
+  nsteps: 5000               # steps per HREMC segment (100 ps at dt=0.020)
+  dt: 0.020                   # ps
+  segment_time_ps: 100.0      # = nsteps * dt
+
+# --- HREMC exchange parameters ---
+exchange:
+  n_cycles: 1000              # total HREMC cycles (100 ns total)
+  exchange_scheme: "neighbor"  # neighbor | all-pairs
+  n_exchange_attempts: 1       # attempts per cycle per pair
+  exchange_direction: "alternate"  # alternate up/down sweeps
+
+# --- GROMACS settings ---
+gromacs:
+  gmx: "gmx"                  # GROMACS executable
+  mdrun: "gmx mdrun"
+  grompp: "gmx grompp"
+  energy: "gmx energy"
+  maxwarn: 2
+  n_threads_per_replica: 4    # OpenMP threads per replica
+
+# --- GPU settings ---
+gpu:
+  enabled: false              # No NVIDIA GPU on Mac Mini M4
+  n_gpus: 0
+  ids: ""
+
+# --- Parallelization ---
+parallel:
+  enabled: true               # Run replicas in parallel
+  max_workers: 2              # Mac Mini M4: 2 replicas × 4 threads = 8 of 10 cores
+  # Hardware profiles:
+  #   4×RTX6000 Ada + 112 CPUs: max_workers=24, n_threads=4, gpu.enabled=true  (~8-14 hr)
+  #   AWS c7i.24xlarge :         max_workers=24, n_threads=4, gpu.enabled=false (~18 hr)
+  #   Local Mac Mini M4:         max_workers=2,  n_threads=4, gpu.enabled=false (weeks)
+  # These estimates are most likely wrong and over pessimistic
+
+# --- Paths (relative to monte_carlo/) ---
+paths:
+  mdp_dir: "mdp"
+  wt_source: "../wt_cg"
+  mutant_source: "../mutant_cg"
+  wt_membrane: "../wt_cg/insane_membrane"
+  mutant_membrane: "../mutant_cg/insane_membrane"
+  martini_dir: "../../../martini_files/martini_v300"
+  lipid_dir: "../../../martini_files/M3-Lipid-Parameters-main/ITPs"
+  solvents_itp: "../../../martini_files/martini_v3.0.0_solvents_v1.itp"
+  ions_itp: "../../../martini_files/martini_v3.0.0_ions_v1.itp"
+
+# --- Output ---
+output:
+  log_interval: 10            # print status every N cycles
+  checkpoint_interval: 50     # save full checkpoint every N cycles
+  trajectory_keep_all: false  # if false, only keep latest + checkpointed frames

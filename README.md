@@ -315,3 +315,40 @@ Total energy, area per lipid, box dimensions over production trajectory
 ![Area Per Lipid](protein_simulations/variant_1/results/14_apl_comparison.png)
 
 ![Box Dimensions](protein_simulations/variant_1/results/15_box_dimension_comparison.png)
+
+---
+
+## MD and Monte Carlo
+
+![scales](MD.png)
+
+Source: [Molecular Dynamics](https://arxiv.org/abs/2307.02176) and [Monte Carlo](https://arxiv.org/abs/2307.02177)
+
+For a large protein like $SCN5A$ ($Na_v 1.5$), $10ns$ is not enough because most relevant motions occur on a much longer timescale. Protein transitions involving protein domains/subunits usually occur in the range of micro seconds to seconds. For motion of domain size parts or large scale conformational transitions $\rightarrow$ milliseconds to seconds and for protein folding seconds (fast folders in milliseconds).
+
+10ns is therefore not anough to capture funcitonal domain rearrangements or folding euilibria relevant to a complex chanell like $SCN5A$.
+
+
+## Hamiltonian Replica Exchange Monte Carlo (HREMC)
+
+- Map all-atom last snapshots (production results) to Martini3 (`martinize2`) $\rightarrow$ CG representation
+
+```
+cd /extended_simulation && /anaconda3/bin/martinize2 \
+  -f /scn5a_af.pdb \
+  -x wt_cg/cg_wt_go.pdb \
+  -o wt_cg/topol_wt_go.top \
+  -ff martini3001 \
+  -from charmm \
+  -dssp \
+  -ignh \
+  -name Protein_wt \
+  -go \
+  -go-eps 9.414 \
+  -p backbone \
+  -pf 1000 \
+  2>&1 | tee /tmp/martinize_wt_go.log | tail -30
+```
+
+- CG $\rightarrow$ INSANE $\rightarrow$ CG protein $+$ Martini3 membrane $=$ **Martini 3 CG with Go-model**
+- Run equilibration locally on Mac Mini
