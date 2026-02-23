@@ -352,3 +352,7 @@ cd /extended_simulation && /anaconda3/bin/martinize2 \
 
 - CG $\rightarrow$ INSANE $\rightarrow$ CG protein $+$ Martini3 membrane $=$ **Martini 3 CG with Go-model**
 - Run equilibration locally on Mac Mini
+- HREMC ran on 3x A5000Pro, 96 CPUs, 192GB RAM. ~11hrs each WT and Mutant.
+
+---
+
