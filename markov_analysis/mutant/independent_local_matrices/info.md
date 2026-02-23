@@ -17,3 +17,7 @@
 - step 6:
 
 `python step6_stationary_distribution.py --lag 10 2>&1 | tee stationary_dist_run.log`
+
+- step 7:
+
+`cd /independent_local_matrices && ls -l msm_block{1,2,3}.xtc msm_block{1,2,3}/rg.npy tica/msm_block{1,2,3}_tica.npy transition_matrices/msm_block{1,2,3}_labels_scc.npy stationary_distribution/msm_block{1,2,3}_pi_rev_tau10.npy stationary_distribution/msm_block{1,2,3}_scc_local_map.npy ../reference/conf_replica_00.gro 2>&1`
