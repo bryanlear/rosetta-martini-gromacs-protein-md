@@ -1,0 +1,93 @@
+=================================================================
+  Step 2 — TICA  (PCA-whitened)  |  Mutant Nav1.5  (Martini 3 CG)
+=================================================================
+  Lag time         : 10 frames  (1.00 ns)
+  N TICs           : 20
+  PCA var threshold: 95.00%
+  Output dir       : /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica
+
+[1] Loading per-block feature matrices …
+  Loaded msm_block1    shape (2000, 24349)
+  Loaded msm_block2    shape (2000, 24349)
+  Loaded msm_block3    shape (5000, 24349)
+
+[2] Computing global mean and centring …
+  Features: 24349,  Total frames: 9000
+
+[3] PCA whitening …
+  Data matrix: N=9000 frames, d=24349 features
+  Using economy SVD (N=9000 < d=24349)
+  SVD done in 157.8 s   (rank ≤ 9000)
+  Variance threshold 95.00% → k = 57 components
+  Cumulative variance at k=57: 95.0048%
+  Top 5 eigenvalues: [252931.5849535  218347.0442266  170976.81566865 148977.18056035
+ 115598.3654551 ]
+  Eigenvalue at k=57: 1.466800e+03
+  Whitened dimension: k = 57
+  Verifying whitening (C(0) ≈ I) …  max |C(0) - I| = 1.24e-14  ✓
+
+[4] Building C(τ=10) in whitened space (57 × 57) …
+  Built in 0.0 s
+
+[5] Solving TICA eigenvalue problem …
+  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+
+  Top 10 TICA eigenvalues & implied timescales:
+    TIC           λ    t (frames)      t (ns)
+  -----  ----------  ------------  ----------
+      1    0.993079        1439.9      143.99
+      2    0.983493         600.8       60.08
+      3    0.977963         448.8       44.88
+      4    0.973207         368.2       36.82
+      5    0.964113         273.6       27.36
+      6    0.955006         217.2       21.72
+      7    0.951161         199.7       19.97
+      8    0.946100         180.5       18.05
+      9    0.929260         136.3       13.63
+     10    0.925923         129.9       12.99
+
+[6] Projecting blocks onto 20 TICs …
+  msm_block1    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/msm_block1_tica.npy   shape (2000, 20)
+  msm_block2    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/msm_block2_tica.npy   shape (2000, 20)
+  msm_block3    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/msm_block3_tica.npy   shape (5000, 20)
+  All blocks  →  tica_all_blocks.npy   shape (9000, 20)
+
+[7] Lag-time scan for implied timescales …
+  lag =    1 frames (0.10 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9955  0.9912  0.9875
+  lag =    2 frames (0.20 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9961  0.9917  0.9875
+  lag =    5 frames (0.50 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9937  0.9866  0.9800
+  lag =   10 frames (1.00 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9931  0.9835  0.9780
+  lag =   20 frames (2.00 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9912  0.9766  0.9734
+  lag =   50 frames (5.00 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9854  0.9628  0.9614
+  lag =  100 frames (10.00 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9709  0.9469  0.9435
+  lag =  200 frames (20.00 ns) …  Diagonalising C_sym(τ)  (57 × 57) …
+  Done in 0.0 s
+  top-3 λ = 0.9412  0.9308  0.8739
+  Saved implied-timescale plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_implied_timescales.png
+
+[8] Generating diagnostic plots …
+  Saved PCA scree plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/pca_whitening_scree.png
+  Saved eigenvalue spectrum → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_eigenvalue_spectrum.png
+  Saved TIC-1 vs TIC-2 scatter → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_projection_tic1_vs_tic2.png
+  Saved TIC-1 time-series → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_tic1_timeseries.png
+  Saved 2D histograms → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_2d_histograms.png
+  Saved cumulative kinetic variance → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_cumulative_kinetic_variance.png
+
+  Summary → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/tica_summary.txt
+
+  Step 2 (TICA) complete.

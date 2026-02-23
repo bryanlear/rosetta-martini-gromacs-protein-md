@@ -1,0 +1,63 @@
+Step 2 — TICA Summary (PCA-whitened)
+=======================================================
+
+Lag time           : 10 frames (1.00 ns)
+N TICs kept        : 20
+Original features  : 24349
+PCA components (k) : 57
+PCA variance       : 95.0048%
+Total frames       : 9000
+
+Block shapes (whitened):
+  msm_block1: (2000, 57)
+  msm_block2: (2000, 57)
+  msm_block3: (5000, 57)
+
+TICA Eigenvalues & Implied Timescales:
+    TIC             λ    t (frames)      t (ns)
+      1      0.993079        1439.9      143.99
+      2      0.983493         600.8       60.08
+      3      0.977963         448.8       44.88
+      4      0.973207         368.2       36.82
+      5      0.964113         273.6       27.36
+      6      0.955006         217.2       21.72
+      7      0.951161         199.7       19.97
+      8      0.946100         180.5       18.05
+      9      0.929260         136.3       13.63
+     10      0.925923         129.9       12.99
+     11      0.919248         118.8       11.88
+     12      0.891956          87.5        8.75
+     13      0.879130          77.6        7.76
+     14      0.875064          74.9        7.49
+     15      0.856168          64.4        6.44
+     16      0.846622          60.1        6.01
+     17      0.843005          58.6        5.86
+     18      0.836457          56.0        5.60
+     19      0.822568          51.2        5.12
+     20      0.815935          49.2        4.92
+
+Outputs in /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/tica/:
+  feature_mean.npy              — global mean (24349,)
+  pca_whitening_matrix.npy      — W (24349, 57)
+  pca_explained_variance.npy    — (57,)
+  pca_eigenvalues.npy           — (57,)
+  tica_eigenvalues.npy          — (20,)
+  tica_eigenvectors_white.npy   — (57, 20) whitened basis
+  tica_transform_full.npy       — (24349, 20) raw→TICA
+  tica_timescales_frames.npy    — (20,)
+  tica_timescales_ns.npy        — (20,)
+  Ct_whitened.npy               — C(τ) (57, 57)
+  msm_block1_tica.npy             — per-block projection
+  msm_block2_tica.npy             — per-block projection
+  msm_block3_tica.npy             — per-block projection
+  tica_all_blocks.npy           — concatenated projection
+  tica_lag_scan.npz             — lag-time scan data
+
+Plots:
+  pca_whitening_scree.png
+  tica_eigenvalue_spectrum.png
+  tica_implied_timescales.png
+  tica_projection_tic1_vs_tic2.png
+  tica_tic1_timeseries.png
+  tica_2d_histograms.png
+  tica_cumulative_kinetic_variance.png

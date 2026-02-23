@@ -1,0 +1,101 @@
+======================================================================
+  Step 4 — Local Transition Count Matrices  |  Mutant Nav1.5  (CG)
+======================================================================
+  Lag time         : 10 frames (1.00 ns)
+  Microstates      : 200
+  Eigenvalues      : 10
+  Reversible       : yes
+  Lag scan         : [1, 2, 5, 10, 15, 20, 30, 50, 75, 100]
+  Output dir       : /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices
+
+[1] Loading per-block microstate labels …
+  msm_block1      2000 frames,    68 unique states
+  msm_block2      2000 frames,    88 unique states
+  msm_block3      5000 frames,   159 unique states
+
+[2] Building per-block C(τ=10) …
+
+  --- msm_block1 (τ=10) ---  [0.000 s]
+  [msm_block1]  Total counts       : 1,990
+  [msm_block1]  Non-zero entries   : 221  (sparsity 0.9945)
+  [msm_block1]  Diagonal (self)    : 1,299  (65.3%)
+  [msm_block1]  Off-diagonal       : 691
+  [msm_block1]  Visited states     : 68 / 200
+  [msm_block1]  Connected comp.    : 133  (largest SCC: 52)
+
+  --- msm_block2 (τ=10) ---  [0.000 s]
+  [msm_block2]  Total counts       : 1,990
+  [msm_block2]  Non-zero entries   : 244  (sparsity 0.9939)
+  [msm_block2]  Diagonal (self)    : 1,266  (63.6%)
+  [msm_block2]  Off-diagonal       : 724
+  [msm_block2]  Visited states     : 88 / 200
+  [msm_block2]  Connected comp.    : 113  (largest SCC: 55)
+
+  --- msm_block3 (τ=10) ---  [0.000 s]
+  [msm_block3]  Total counts       : 4,990
+  [msm_block3]  Non-zero entries   : 611  (sparsity 0.9847)
+  [msm_block3]  Diagonal (self)    : 2,991  (59.9%)
+  [msm_block3]  Off-diagonal       : 1,999
+  [msm_block3]  Visited states     : 159 / 200
+  [msm_block3]  Connected comp.    : 42  (largest SCC: 158)
+
+[3] Aggregated count matrix C_agg(τ=10) …
+  [aggregated]  Total counts       : 8,970
+  [aggregated]  Non-zero entries   : 870  (sparsity 0.9782)
+  [aggregated]  Diagonal (self)    : 5,556  (61.9%)
+  [aggregated]  Off-diagonal       : 3,414
+  [aggregated]  Visited states     : 200 / 200
+  [aggregated]  Connected comp.    : 1  (largest SCC: 200)
+
+[4] Estimating transition matrices …
+  Estimator: reversible (symmetrised)
+
+[5] Eigenanalysis of T(τ=10) …
+
+  Aggregated T — leading eigenvalues & implied timescales:
+    #           λ      ITS (ns)
+  ---  ----------  ------------
+    1    1.000000             —
+    2    0.997356        377.69
+    3    0.994941        197.15
+    4    0.993559        154.76
+    5    0.991728        120.39
+    6    0.990078        100.29
+    7    0.989701         96.59
+    8    0.987711         80.88
+    9    0.985018         66.24
+   10    0.982554         56.82
+
+  msm_block1 — top-3 ITS (ns): 394.7, 116.6, 99.5
+
+  msm_block2 — top-3 ITS (ns): 1133.4, 183.2, 133.4
+
+  msm_block3 — top-3 ITS (ns): 386.7, 359.6, 124.1
+
+[6] Lag-time scan for implied-timescale convergence …
+  Lag values: [1, 2, 5, 10, 15, 20, 30, 50, 75, 100]
+  lag =    1 frames (0.1 ns)   →  top-3 ITS (ns): 187.8, 96.4, 72.9
+  lag =    2 frames (0.2 ns)   →  top-3 ITS (ns): 243.4, 120.0, 90.9
+  lag =    5 frames (0.5 ns)   →  top-3 ITS (ns): 313.0, 156.5, 115.4
+  lag =   10 frames (1.0 ns)   →  top-3 ITS (ns): 377.7, 197.2, 154.8
+  lag =   15 frames (1.5 ns)   →  top-3 ITS (ns): 402.9, 209.6, 177.5
+  lag =   20 frames (2.0 ns)   →  top-3 ITS (ns): 422.9, 230.0, 198.1
+  lag =   30 frames (3.0 ns)   →  top-3 ITS (ns): 427.1, 260.2, 224.8
+  lag =   50 frames (5.0 ns)   →  top-3 ITS (ns): 396.5, 266.8, 221.7
+  lag =   75 frames (7.5 ns)   →  top-3 ITS (ns): 354.6, 260.6, 213.0
+  lag =  100 frames (10.0 ns)   →  top-3 ITS (ns): 333.1, 251.1, 207.0
+  Saved ITS plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/its_convergence_aggregated.png
+  Saved per-block ITS → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/its_convergence_per_block.png
+
+[7] Generating diagnostic plots …
+  Saved count matrix heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/count_matrix_aggregated.png
+  Saved count matrix heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/count_matrix_msm_block1.png
+  Saved count matrix heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/count_matrix_msm_block2.png
+  Saved count matrix heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/count_matrix_msm_block3.png
+  Saved eigenvalue spectrum → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/eigenvalue_spectrum_aggregated.png
+  Saved stationary distribution → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/stationary_dist_aggregated.png
+
+[8] Writing summary …
+  Summary → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/count_matrices/count_matrix_summary.txt
+
+  Step 4 (count matrices) complete.

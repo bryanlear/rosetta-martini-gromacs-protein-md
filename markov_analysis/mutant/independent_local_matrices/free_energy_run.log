@@ -1,0 +1,50 @@
+=================================================================
+Step 7 — Local Free Energy Landscapes
+T = 310.0 K     k_BT = 2.5775 kJ/mol
+Lag τ = 10 frames = 1.0 ns
+Grid  = 60 × 60
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  Block 1
+─────────────────────────────────────────────────────────────────
+  Computing BB-RMSD for msm_block1 …
+    RMSD range: [0.00, 19.09] Å
+  Local SCC states: 52
+  ΔG range: [0.00, 11.48] kJ/mol  (4.5 k_BT)
+  Frames: 2000  with ΔG: 1529  (76.4%)
+  Plots → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/free_energy/msm_block1/
+
+─────────────────────────────────────────────────────────────────
+  Block 2
+─────────────────────────────────────────────────────────────────
+  Computing BB-RMSD for msm_block2 …
+    RMSD range: [0.00, 20.52] Å
+  Local SCC states: 55
+  ΔG range: [0.00, 10.33] kJ/mol  (4.0 k_BT)
+  Frames: 2000  with ΔG: 1006  (50.3%)
+  Plots → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/free_energy/msm_block2/
+
+─────────────────────────────────────────────────────────────────
+  Block 3
+─────────────────────────────────────────────────────────────────
+  Computing BB-RMSD for msm_block3 …
+    RMSD range: [0.00, 23.68] Å
+  Local SCC states: 158
+  ΔG range: [0.00, 11.95] kJ/mol  (4.6 k_BT)
+  Frames: 5000  with ΔG: 4975  (99.5%)
+  Plots → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/free_energy/msm_block3/
+
+─────────────────────────────────────────────────────────────────
+  Side-by-side comparison plots
+─────────────────────────────────────────────────────────────────
+  Comparison plots → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/free_energy/comparison/
+
+─────────────────────────────────────────────────────────────────
+  Writing summary
+─────────────────────────────────────────────────────────────────
+  Summary → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/free_energy/summary_free_energy_tau10.txt
+
+=================================================================
+Step 7 complete  (15.7 s)
+=================================================================

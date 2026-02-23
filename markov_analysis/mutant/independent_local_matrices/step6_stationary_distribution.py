@@ -286,45 +286,50 @@ def plot_all(out_dir, results):
 
     # ── 5. Per-block π comparison ───────────────────────────────
     block_data = results.get("per_block", {})
-    if len(block_data) == 2:
-        fig, axes = plt.subplots(1, 2, figsize=(14, 4.5))
+    if len(block_data) >= 2:
+        from itertools import combinations
+        block_keys = sorted(block_data.keys())
+        n_pairs = len(list(combinations(block_keys, 2)))
+        fig, axes = plt.subplots(1, 1 + n_pairs,
+                                 figsize=(6 + 5 * n_pairs, 4.5))
+        if not isinstance(axes, np.ndarray):
+            axes = [axes]
 
         # (a) overlay bars for each block
         ax = axes[0]
-        for bk, bdata in block_data.items():
+        for bk in block_keys:
+            bdata = block_data[bk]
             smap = bdata["scc_map_local"]
-            # map local SCC indices back to original state space
             orig_ids = scc_map[smap]
             ax.bar(orig_ids, bdata["pi_rev"], width=0.8,
-                   alpha=0.55, label=bk)
+                   alpha=0.45, label=bk)
         ax.set_xlabel("Original microstate index")
         ax.set_ylabel("π_i (local)")
         ax.set_title("Per-block local stationary distributions")
         ax.legend(fontsize=9)
 
-        # (b) scatter block1 π vs block3 π on shared SCC states
-        ax = axes[1]
-        b1 = block_data.get("msm_block1")
-        b3 = block_data.get("msm_block3")
-        if b1 is not None and b3 is not None:
-            # find common states (in SCC-197 index space)
-            set1 = set(b1["scc_map_local"].tolist())
-            set3 = set(b3["scc_map_local"].tolist())
-            common = sorted(set1 & set3)
+        # (b) pairwise scatter comparisons
+        for idx, (bk_a, bk_b) in enumerate(combinations(block_keys, 2)):
+            ax = axes[1 + idx]
+            ba = block_data[bk_a]
+            bb = block_data[bk_b]
+            set_a = set(ba["scc_map_local"].tolist())
+            set_b = set(bb["scc_map_local"].tolist())
+            common = sorted(set_a & set_b)
             if len(common) > 0:
-                pi1_common = np.array([b1["pi_rev"][
-                    np.where(b1["scc_map_local"] == s)[0][0]]
+                pi_a = np.array([ba["pi_rev"][
+                    np.where(ba["scc_map_local"] == s)[0][0]]
                     for s in common])
-                pi3_common = np.array([b3["pi_rev"][
-                    np.where(b3["scc_map_local"] == s)[0][0]]
+                pi_b = np.array([bb["pi_rev"][
+                    np.where(bb["scc_map_local"] == s)[0][0]]
                     for s in common])
-                ax.scatter(pi1_common, pi3_common, s=10, alpha=0.6)
-                lo = min(pi1_common.min(), pi3_common.min())
-                hi = max(pi1_common.max(), pi3_common.max())
+                ax.scatter(pi_a, pi_b, s=10, alpha=0.6)
+                lo = min(pi_a.min(), pi_b.min())
+                hi = max(pi_a.max(), pi_b.max())
                 ax.plot([lo, hi], [lo, hi], "k--", lw=0.8)
-                ax.set_xlabel("π (block 1)")
-                ax.set_ylabel("π (block 3)")
-                ax.set_title(f"Block 1 vs Block 3 — {len(common)} shared states")
+                ax.set_xlabel(f"π ({bk_a})")
+                ax.set_ylabel(f"π ({bk_b})")
+                ax.set_title(f"{bk_a} vs {bk_b} — {len(common)} shared")
             else:
                 ax.text(0.5, 0.5, "No shared SCC states",
                         transform=ax.transAxes, ha="center")
@@ -360,7 +365,7 @@ def plot_all(out_dir, results):
     fig.savefig(os.path.join(plot_dir, "entropy_cumulative.png"), dpi=200)
     plt.close(fig)
 
-    n_plots = 6 if len(block_data) == 2 else 5
+    n_plots = 6 if len(block_data) >= 2 else 5
     print(f"\n  {n_plots} plots saved → {plot_dir}/")
 
 

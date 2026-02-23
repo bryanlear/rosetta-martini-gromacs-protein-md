@@ -1,0 +1,80 @@
+======================================================================
+  Step 5 — Transition Probability Matrices  |  Mutant Nav1.5  (CG)
+======================================================================
+  Blocks used      : msm_block1, msm_block2, msm_block3
+  Lag time         : 10 frames (1.00 ns)
+  Microstates      : 200
+  Restrict to SCC  : yes
+  Eigenvalues      : 20
+  CK test steps    : 10
+  Output dir       : /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices
+
+[1] Loading count matrices …
+  msm_block1    counts =  1,990  visited =  68
+  msm_block2    counts =  1,990  visited =  88
+  msm_block3    counts =  4,990  visited = 159
+  aggregated    counts =  8,970  visited = 200
+
+[2] Restricting to largest strongly connected component …
+  Full states: 200,  SCC states: 200  (dropped 0 disconnected states)
+
+[3] Estimating non-reversible T (row-normalisation) …
+  [T_nonrev] Non-negative     : ✓  (min = 0.00e+00)
+  [T_nonrev] Row-stochastic   : ✓  (max |Σ_j T_ij − 1| = 2.22e-16)
+  Non-reversible top-5 ITS (ns):  68.4  68.4  60.0  60.0  37.8
+
+[4] Estimating reversible T (symmetrised) …
+  [T_rev] Non-negative     : ✓  (min = 0.00e+00)
+  [T_rev] Row-stochastic   : ✓  (max |Σ_j T_ij − 1| = 2.22e-16)
+  π: min = 0.001115, max = 0.012263, sum = 1.000000000000
+  [T_rev] Detailed balance : ✓  (max |π_i T_ij − π_j T_ji| = 4.34e-19, mean = 5.90e-22)
+
+  Reversible T — eigenvalues & implied timescales:
+    #             λ      ITS (ns)
+  ---  ------------  ------------
+    1      1.000000             —
+    2      0.997356        377.69
+    3      0.994941        197.15
+    4      0.993559        154.76
+    5      0.991728        120.39
+    6      0.990078        100.29
+    7      0.989701         96.59
+    8      0.987711         80.88
+    9      0.985018         66.24
+   10      0.982554         56.82
+   11      0.976801         42.60
+   12      0.973123         36.70
+   13      0.971985         35.19
+   14      0.968855         31.61
+   15      0.967465         30.23
+
+[5] Chapman-Kolmogorov self-consistency test …
+  CK test: comparing T(nτ) vs T(τ)^n for n = 1..10
+    n= 1  τ=  10 (1.0 ns)  L2 = 0.000000  L∞ = 0.000000
+    n= 2  τ=  20 (2.0 ns)  L2 = 0.010644  L∞ = 0.289364
+    n= 3  τ=  30 (3.0 ns)  L2 = 0.018851  L∞ = 0.592535
+    n= 4  τ=  40 (4.0 ns)  L2 = 0.023504  L∞ = 0.578679
+    n= 5  τ=  50 (5.0 ns)  L2 = 0.025932  L∞ = 0.582019
+    n= 6  τ=  60 (6.0 ns)  L2 = 0.027673  L∞ = 0.622122
+    n= 7  τ=  70 (7.0 ns)  L2 = 0.028979  L∞ = 0.590165
+    n= 8  τ=  80 (8.0 ns)  L2 = 0.030613  L∞ = 0.767152
+    n= 9  τ=  90 (9.0 ns)  L2 = 0.032398  L∞ = 0.943001
+    n=10  τ= 100 (10.0 ns)  L2 = 0.033187  L∞ = 0.765390
+
+[6] Remapping block labels to SCC state space …
+  msm_block1: 2000 mapped, 0 dropped (-1)
+  msm_block2: 2000 mapped, 0 dropped (-1)
+  msm_block3: 5000 mapped, 0 dropped (-1)
+
+[7] Generating diagnostic plots …
+  Saved eigenvalue spectrum → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/eigenvalue_spectrum.png
+  Saved ITS bar chart → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/implied_timescales.png
+  Saved stationary distribution → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/stationary_distribution.png
+  Saved T heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/T_heatmap_reversible.png
+  Saved T heatmap → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/T_heatmap_non-reversible.png
+  Saved CK test plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/ck_test.png
+
+[8] Writing summary …
+  Summary → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/transition_matrix_summary.txt
+
+  Step 5 (transition matrices) complete.

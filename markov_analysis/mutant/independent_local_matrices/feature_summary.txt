@@ -1,0 +1,44 @@
+Step 1 — Feature Extraction Summary
+==================================================
+
+Topology:  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/reference/conf_replica_00.gro
+Blocks:    ['msm_block1.xtc', 'msm_block2.xtc', 'msm_block3.xtc']
+BB stride: 10
+Native contact cutoff: 8.0 Å
+
+Domain boundaries:
+  DI: resid 1–450
+  DII: resid 451–900
+  DIII: resid 901–1350
+  DIV: resid 1351–2016
+
+
+msm_block1:
+  pairwise_dist              (2000, 20301)
+  native_Q                   (2000, 11)
+  dihedrals                  (2000, 4026)
+  rg                         (2000, 5)
+  interdomain_dist           (2000, 6)
+
+msm_block2:
+  pairwise_dist              (2000, 20301)
+  native_Q                   (2000, 11)
+  dihedrals                  (2000, 4026)
+  rg                         (2000, 5)
+  interdomain_dist           (2000, 6)
+
+msm_block3:
+  pairwise_dist              (5000, 20301)
+  native_Q                   (5000, 11)
+  dihedrals                  (5000, 4026)
+  rg                         (5000, 5)
+  interdomain_dist           (5000, 6)
+
+Combined (all blocks):  (9000, 24349)
+
+Feature columns breakdown:
+  pairwise_dist     = BB subsampled pw-distances (stride 10)
+  native_Q          = fraction of native contacts (total, intra-domain, cross-domain)
+  dihedrals         = sin/cos of BB pseudo-dihedral angles
+  rg                = radius of gyration (total + per-domain)
+  interdomain_dist  = centroid-centroid distances between domains

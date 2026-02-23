@@ -1,0 +1,71 @@
+=================================================================
+  Step 3 — k-Medoids Clustering  |  Mutant Nav1.5  (Martini 3 CG)
+=================================================================
+  Final k          : 200
+  TICs used        : all
+  Random seed      : 42
+  Max iterations   : 300
+  k-scan           : yes
+  k-scan values    : [25, 50, 75, 100, 150, 200, 250, 300, 400, 500]
+  Output dir       : /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering
+
+[1] Loading per-block TICA projections …
+  Loaded msm_block1    shape (2000, 20)
+  Loaded msm_block2    shape (2000, 20)
+  Loaded msm_block3    shape (5000, 20)
+  Combined: 9000 frames × 20 TICs
+
+[2] Computing pairwise Euclidean distance matrix …
+  N = 9000,  distance pairs = 40,495,500
+  Estimated memory (square, f64): 0.65 GB
+  Distance matrix computed in 0.3 s  shape (9000, 9000)
+  Saved square distance matrix
+
+[3] Running k-scan over 10 values …
+  k =   25  |  loss =      21022.9  |  silhouette = 0.3713  |  iter =   3  |  time = 1.7 s
+  k =   50  |  loss =      15524.9  |  silhouette = 0.3412  |  iter =   4  |  time = 1.3 s
+  k =   75  |  loss =      13584.2  |  silhouette = 0.3086  |  iter =   3  |  time = 1.0 s
+  k =  100  |  loss =      12404.2  |  silhouette = 0.2913  |  iter =   5  |  time = 1.6 s
+  k =  150  |  loss =      10917.3  |  silhouette = 0.2835  |  iter =   3  |  time = 1.0 s
+  k =  200  |  loss =       9970.0  |  silhouette = 0.2758  |  iter =   4  |  time = 1.2 s
+  k =  250  |  loss =       9263.1  |  silhouette = 0.2762  |  iter =   4  |  time = 1.3 s
+  k =  300  |  loss =       8731.5  |  silhouette = 0.2688  |  iter =   3  |  time = 1.2 s
+  k =  400  |  loss =       7976.3  |  silhouette = 0.2622  |  iter =   5  |  time = 1.9 s
+  k =  500  |  loss =       7427.9  |  silhouette = 0.2521  |  iter =   4  |  time = 1.6 s
+  Saved elbow plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_elbow.png
+  Saved silhouette plot → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_silhouette_vs_k.png
+
+  Best silhouette: k = 25  (score = 0.3713)
+
+[4] Running FasterPAM with k = 200 …
+  Converged in 4 iterations  (1.3 s)
+  Total dissimilarity (loss) = 9970.03
+  Medoids: 200 cluster centres
+  Computing silhouette score …  0.2758
+
+[5] Splitting labels into per-block arrays …
+  msm_block1    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/msm_block1_labels.npy  (N=2000, 68 unique states)
+  msm_block2    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/msm_block2_labels.npy  (N=2000, 88 unique states)
+  msm_block3    →  /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/msm_block3_labels.npy  (N=5000, 159 unique states)
+  All blocks   →  labels_all_blocks.npy  shape (9000,)
+  Medoid indices  →  medoid_indices.npy   shape (200,)
+  Medoid coords   →  medoid_tica_coords.npy   shape (200, 20)
+
+[6] Computing cluster statistics …
+  Non-empty clusters  : 200
+  Empty clusters      : 0
+  Min population      : 10
+  Max population      : 110
+  Mean population     : 45.0
+  Median population   : 43.0
+
+[7] Generating diagnostic plots …
+  Saved cluster map → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_tic1_vs_tic2.png
+  Saved population histogram → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_population_histogram.png
+  Saved TIC-pair plots → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_tic_pairs.png
+  Saved block time-series → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/kmedoids_block_timeseries.png
+
+[8] Writing summary …
+  Summary → /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/clustering/clustering_summary.txt
+
+  Step 3 (k-medoids clustering) complete.

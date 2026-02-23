@@ -1,0 +1,82 @@
+Step 5 — Transition Probability Matrix Summary
+============================================================
+
+Blocks used        : msm_block1, msm_block2, msm_block3
+Lag time           : 10 frames (1.00 ns)
+Full microstates   : 200
+SCC restriction    : yes
+Active states (SCC): 200
+
+Count matrix (all blocks aggregated, SCC):
+  Total counts     : 8,970
+  Non-zero entries : 870
+  Self-transition  : 61.9%
+
+Non-reversible T:
+  Row-stochastic   : ✓
+  Top-5 ITS (ns)   : 68.4, 68.4, 60.0, 60.0, 37.8
+
+Reversible T (symmetrised):
+  Row-stochastic   : ✓
+  Detailed balance : ✓  (max viol. = 4.34e-19)
+  π range          : [0.001115, 0.012263]
+
+Reversible eigenvalues & implied timescales (τ=10):
+    #             λ      ITS (ns)
+    1      1.000000           nan
+    2      0.997356        377.69
+    3      0.994941        197.15
+    4      0.993559        154.76
+    5      0.991728        120.39
+    6      0.990078        100.29
+    7      0.989701         96.59
+    8      0.987711         80.88
+    9      0.985018         66.24
+   10      0.982554         56.82
+   11      0.976801         42.60
+   12      0.973123         36.70
+   13      0.971985         35.19
+   14      0.968855         31.61
+   15      0.967465         30.23
+   16      0.965352         28.36
+   17      0.963368         26.80
+   18      0.962363         26.07
+   19      0.956783         22.64
+   20      0.951674         20.19
+
+Chapman-Kolmogorov test (T(nτ) vs T(τ)^n):
+    n   nτ (ns)          L2          L∞
+    1       1.0    0.000000    0.000000
+    2       2.0    0.010644    0.289364
+    3       3.0    0.018851    0.592535
+    4       4.0    0.023504    0.578679
+    5       5.0    0.025932    0.582019
+    6       6.0    0.027673    0.622122
+    7       7.0    0.028979    0.590165
+    8       8.0    0.030613    0.767152
+    9       9.0    0.032398    0.943001
+   10      10.0    0.033187    0.765390
+
+Outputs in /Users/bry_lee/Desktop/protein_simulation/MUTANT_extended_simulation/mutant_analysis_pkg/independent_local_matrices/transition_matrices/:
+  C_agg_tau10.npy          — aggregated counts (full)
+  C_scc_tau10.npy              — SCC-restricted counts
+  scc_state_map.npy              — SCC→original index map
+  full_to_scc_map.npy            — original→SCC index map
+  T_nonrev_tau10.npy           — non-reversible T
+  T_rev_tau10.npy              — reversible T
+  eigenvalues_rev_tau10.npy    — reversible eigenvalues
+  eigenvectors_rev_tau10.npy   — reversible eigenvectors
+  timescales_rev_tau10.npy     — implied timescales
+  stationary_dist_tau10.npy    — π
+  msm_block1_labels_scc.npy       — SCC-remapped labels
+  msm_block2_labels_scc.npy       — SCC-remapped labels
+  msm_block3_labels_scc.npy       — SCC-remapped labels
+  ck_test_results.npz            — CK test data
+
+Plots:
+  eigenvalue_spectrum.png
+  implied_timescales.png
+  stationary_distribution.png
+  T_heatmap_reversible.png
+  T_heatmap_non-reversible.png
+  ck_test.png

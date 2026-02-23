@@ -332,12 +332,15 @@ def plot_1d_fes(cv_vals, dG_frame, valid, xlabel, title, fpath,
 
 
 def plot_comparison_scatter(block_data, cv_pair, labels, out_dir):
-    """Overlay Block 1 and Block 3 FES scatter (ΔG as colour) on same axes."""
+    """Overlay all block FES scatter (ΔG as colour) on same axes."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(1, 2, figsize=(15, 5.5))
+    n_blocks = len(block_data)
+    fig, axes = plt.subplots(1, n_blocks, figsize=(6 * n_blocks + 3, 5.5))
+    if n_blocks == 1:
+        axes = [axes]
     for ax, (bk, bd) in zip(axes, block_data.items()):
         valid = bd["valid"]
         cv1 = bd[cv_pair[0]][valid]
@@ -349,7 +352,8 @@ def plot_comparison_scatter(block_data, cv_pair, labels, out_dir):
         fig.colorbar(sc, ax=ax, shrink=0.8, label="ΔG (kJ/mol)")
         ax.set_xlabel(labels[0], fontsize=11)
         ax.set_ylabel(labels[1], fontsize=11)
-        bk_label = "Block 1 (native)" if "1" in bk else "Block 3 (excited)"
+        bk_num = bk.replace("msm_block", "")
+        bk_label = f"Block {bk_num}"
         ax.set_title(f"{bk_label}", fontsize=11, weight="bold")
     fig.suptitle(f"Free Energy:  {labels[0]}  vs  {labels[1]}",
                  fontsize=13, weight="bold", y=1.01)
@@ -377,8 +381,8 @@ def write_summary(out_dir, block_results, kBT, lag, nbins, temp):
         f.write("=" * 65 + "\n\n")
 
         for bk, bd in block_results.items():
-            bk_label = ("Block 1 — folded / native basin" if "1" in bk
-                        else "Block 3 — unfolded / excited basin")
+            bk_num = bk.replace("msm_block", "")
+            bk_label = f"Block {bk_num}"
             f.write(f"──── {bk_label} ────\n\n")
             f.write(f"  Local SCC states      : {bd['n_scc_local']}\n")
             f.write(f"  Frames (total)        : {bd['n_frames']}\n")
@@ -449,8 +453,8 @@ def main():
     block_data_for_comparison = {}
 
     for bk in BLOCKS:
-        bk_label = "Block 1 (native / folded)" if "1" in bk \
-                   else "Block 3 (excited / unfolded)"
+        bk_num = bk.replace("msm_block", "")
+        bk_label = f"Block {bk_num}"
         print(f"\n{'─'*65}")
         print(f"  {bk_label}")
         print(f"{'─'*65}")
