@@ -1,0 +1,58 @@
+Step 3 — k-Medoids Clustering Summary
+=======================================================
+
+Algorithm          : FasterPAM (kmedoids package)
+Number of clusters : 200
+TICs used          : 20 (of all available)
+Total frames       : 11760
+Distance metric    : Euclidean
+Random seed        : 42
+Max iterations     : 300
+Converged in       : 4 iterations (2.2 s)
+Total dissimilarity: 13306.7229
+Silhouette score   : 0.2827
+
+Block composition:
+  msm_block1: 2940 frames, 105 unique states
+  msm_block2: 1960 frames, 75 unique states
+  msm_block3: 6860 frames, 175 unique states
+
+Cluster population statistics:
+  Non-empty clusters  : 200
+  Empty clusters      : 0
+  Min population      : 11
+  Max population      : 142
+  Mean population     : 58.8
+  Median population   : 55.0
+  Std population      : 22.3
+
+Top-10 most populated clusters:
+   Cluster     Pop      Frac    Medoid     TIC-1     TIC-2
+       147     142    0.0121      5852     0.767     0.274
+        94     122    0.0104      4006     0.414    -0.381
+        48     119    0.0101      1429    -1.789     0.652
+       116     117    0.0099     10476     0.003    -1.813
+       158     116    0.0099      6714     0.338    -1.591
+       156     112    0.0095      6874    -0.024    -0.291
+         4     111    0.0094      2522     1.223     0.924
+        85     109    0.0093      4338     0.583    -0.766
+        40     104    0.0088      2644     1.069     1.040
+        58     102    0.0087      6954     0.503    -0.493
+
+Outputs in /Users/bry_lee/Desktop/protein_simulation/WT_extended_simulation/wt_analysis_pkg/independent_local_matrices/clustering/:
+  labels_all_blocks.npy       — combined cluster labels (11760,)
+  msm_block1_labels.npy        — per-block labels
+  msm_block2_labels.npy        — per-block labels
+  msm_block3_labels.npy        — per-block labels
+  medoid_indices.npy          — medoid frame indices (200,)
+  medoid_tica_coords.npy      — medoid TICA coordinates (200, 20)
+  (distance matrix computed in memory, not saved to disk)
+  k_scan_results.npz          — k-scan data
+
+Plots:
+  kmedoids_elbow.png
+  kmedoids_silhouette_vs_k.png
+  kmedoids_tic1_vs_tic2.png
+  kmedoids_population_histogram.png
+  kmedoids_tic_pairs.png
+  kmedoids_block_timeseries.png

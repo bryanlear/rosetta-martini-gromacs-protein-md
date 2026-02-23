@@ -1,0 +1,58 @@
+; ============================================================
+; SOFT NVT EQUILIBRATION — Martini 3 CG HREMC
+; Stochastic dynamics to tame force spikes in clash-fixed systems
+; ============================================================
+
+define                   = -DPOSRES -DPOSRES_FC=1000
+
+integrator               = sd       ; stochastic dynamics — damps force spikes
+dt                       = 0.002    ; 2 fs (very conservative)
+nsteps                   = 25000    ; 50 ps
+
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 5000
+nstenergy                = 5000
+nstxout-compressed       = 0
+compressed-x-precision   = 100
+
+cutoff-scheme            = Verlet
+nstlist                  = 20
+rlist                    = 1.35
+verlet-buffer-tolerance  = -1
+ns_type                  = grid
+pbc                      = xyz
+
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+
+; SD integrator handles thermostatting via friction
+tcoupl                   = no
+tc-grps                  = Protein Non-Protein
+nsttcouple               = 20
+tau_t                    = 1.0 1.0
+ref_t                    = 310 310
+
+gen_vel                  = yes
+gen_temp                 = 310
+gen_seed                 = -1
+
+Pcoupl                   = no
+
+constraints              = none
+constraint_algorithm     = Lincs
+lincs_order              = 12
+lincs_warnangle          = 90
+lincs_iter               = 4
+
+; Center of mass removal
+comm-mode                = Linear
+nstcomm                  = 100
+comm-grps                = Protein Non-Protein

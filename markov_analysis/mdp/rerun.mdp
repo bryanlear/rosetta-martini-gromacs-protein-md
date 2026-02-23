@@ -1,0 +1,51 @@
+; ============================================================
+; RERUN MDP — for energy re-evaluation under different Hamiltonians
+; Used to compute cross-energies for HREMC exchange criterion
+; ============================================================
+
+integrator               = md
+dt                       = 0.020
+nsteps                   = 0      ; no actual dynamics, just energy eval
+
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 1
+nstenergy                = 1
+nstxout-compressed       = 0
+
+cutoff-scheme            = Verlet
+nstlist                  = 20
+rlist                    = 1.35
+verlet-buffer-tolerance  = -1
+ns_type                  = grid
+pbc                      = xyz
+
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+
+tcoupl                   = v-rescale
+tc-grps                  = Protein Non-Protein
+nsttcouple               = 20
+tau_t                    = 1.0 1.0
+ref_t                    = 310 310
+
+gen_vel                  = no
+
+Pcoupl                   = no
+
+constraints              = none
+constraint_algorithm     = Lincs
+lincs_order              = 12
+lincs_warnangle          = 90
+lincs_iter               = 4
+
+comm-mode                = Linear
+nstcomm                  = 100
+comm-grps                = Protein Non-Protein
