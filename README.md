@@ -356,3 +356,73 @@ cd /extended_simulation && /anaconda3/bin/martinize2 \
 
 ---
 
+- **Due to kinetic bottlenecks in the simulation:**
+
+## CG HREMC Local MSM Comparison
+
+### WT
+
+![sht](markov_analysis/WT/wt_overall_acceptance_ratio.png)
+
+| | |
+|---|---|
+| ![pca1_wt](markov_analysis/WT/bottleneck_02_03_pca.png) | ![pca2_wt](markov_analysis/WT/bottleneck_04_05_pca.png) |
+
+The WT 12-replica ladder was fragmented into 3 blocks:
+
+- **Local MSM 1**: Replicas 0, 1, and 2. Block_1 is bounded by 3.2% exchange rate at interface (2, 3).
+
+- **Local MSM 2**: Replicas 3 and 4. Block_2 is bounded by 3.2% exchange rate at interface (2, 3) and 3.8% exchange rate at interface (4, 5).
+
+- **Local MSM 3**: Replicas 5, 6, 7, 8, 9, 10, and 11. Block_3 is bounded by 3.8% exchange rate at interface (4, 5). All subsequent interfaces maintain acceptance rates above 12.0%.
+
+***Block_2 was excluded after local transition count matrices step***
+
+```msm_block2 (1960 frames):
+    Total counts       : 1,950
+    Non-zero entries   : 230
+    Sparsity           : 0.9942
+    Self-transition %  : 65.1%
+    Visited states     : 75
+    Connected comp.    : 126
+    Largest SCC        : 9
+```
+
+1. Local free energy difference mapping:
+
+**NATIVE:**
+
+```
+  msm_block1:
+    Local SCC states    = 53
+    λ₁ (rev)            = 0.999999999999995
+    λ₁ (nonrev)         = 1.000000000000006
+    min(π_rev)          = 8.880995e-04
+    max(π_rev)          = 5.861456e-02
+    H(π_rev)            = 3.5951  (efficiency = 0.9055)
+```
+
+$H_{max}=ln(53) \approx 3.9703$ whereas $H(\pi_{rev})=3.5951$ Therefore efficiency $\frac{H}{ln53}=0.9055$
+Thus probability mass is well distributed and no state dominates. $max(\pi_{rev}) \approx 5.9$% and $min(\pi_{rev})\approx 0.09$%.
+
+
+
+**UNFOLDED/HIGH ENERGY BASIN:**
+
+```
+  msm_block3:
+    Local SCC states    = 175
+    λ₁ (rev)            = 1.000000000000002
+    λ₁ (nonrev)         = 1.000000000000006
+    min(π_rev)          = 1.459854e-04
+    max(π_rev)          = 2.072993e-02
+    H(π_rev)            = 4.9162  (efficiency = 0.9519)
+```
+
+$H(\pi_{rev})\approx 0.9519$ 
+
+Flatter and rugged energy landscape $\rightarrow$ disordered conformation/unfolded/not stable
+
+| | |
+|---|---|
+| ![fe_wt](markov_analysis/WT/free_energy/msm_block1/fes_rmsd_vs_rg.png) | ![fe_wt](markov_analysis/WT/free_energy/msm_block3/fes_rmsd_vs_rg.png) |
