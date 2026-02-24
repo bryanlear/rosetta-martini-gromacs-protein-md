@@ -1,0 +1,70 @@
+Step 4 — Local Transition Count Matrices Summary
+============================================================
+
+Lag time           : 10 frames (1.00 ns)
+Microstates        : 200
+Estimator          : reversible (symmetrised)
+Total frames       : 6860
+
+Per-block statistics:
+
+  msm_block1 (1960 frames):
+    Total counts       : 1,950
+    Non-zero entries   : 255
+    Sparsity           : 0.9936
+    Self-transition %  : 59.0%
+    Visited states     : 78
+    Connected comp.    : 123
+    Largest SCC        : 78
+
+  msm_block3 (4900 frames):
+    Total counts       : 4,890
+    Non-zero entries   : 601
+    Sparsity           : 0.9850
+    Self-transition %  : 57.6%
+    Visited states     : 172
+    Connected comp.    : 29
+    Largest SCC        : 172
+
+Aggregated statistics:
+  Total counts       : 6,840
+  Non-zero entries   : 773
+  Sparsity           : 0.9807
+  Self-transition %  : 58.0%
+  Visited states     : 200
+  Connected comp.    : 1
+  Largest SCC        : 200
+
+Aggregated eigenvalues & implied timescales (τ=10):
+    #             λ      ITS (ns)
+    1      1.000000           nan
+    2      0.997360        378.34
+    3      0.993989        165.86
+    4      0.993063        143.66
+    5      0.991266        113.99
+    6      0.989855         98.07
+    7      0.986677         74.56
+    8      0.986348         72.75
+    9      0.981093         52.39
+   10      0.978494         46.00
+
+Outputs in /Users/bry_lee/Desktop/protein_simulation/WT_extended_simulation/wt_analysis_pkg/independent_local_matrices/block1_3/count_matrices/:
+  msm_block1_C_tau10.npy       — per-block count matrix
+  msm_block1_T_tau10.npy       — per-block transition matrix
+  msm_block3_C_tau10.npy       — per-block count matrix
+  msm_block3_T_tau10.npy       — per-block transition matrix
+  C_agg_tau10.npy            — aggregated count matrix
+  C_agg_sym_tau10.npy        — symmetrised count matrix
+  T_agg_tau10.npy            — aggregated transition matrix
+  eigenvalues_agg_tau10.npy  — aggregated eigenvalues
+  stationary_dist_tau10.npy  — stationary distribution
+  lag_scan_results.npz         — lag-scan data
+
+Plots:
+  its_convergence_aggregated.png
+  its_convergence_per_block.png
+  count_matrix_aggregated.png
+  count_matrix_msm_block1.png
+  count_matrix_msm_block3.png
+  eigenvalue_spectrum_aggregated.png
+  stationary_dist_aggregated.png

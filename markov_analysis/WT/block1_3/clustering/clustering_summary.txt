@@ -1,0 +1,53 @@
+Step 3 — k-Medoids Clustering Summary
+=======================================================
+
+Algorithm          : FasterPAM (kmedoids package)
+Number of clusters : 200
+TICs used          : 20 (of all available)
+Total frames       : 6860
+Distance metric    : Euclidean
+Random seed        : 42
+Max iterations     : 300
+Converged in       : 3 iterations (2.2 s)
+Total dissimilarity: 7300.9584
+Silhouette score   : 0.2952
+
+Block composition:
+  msm_block1: 1960 frames, 78 unique states
+  msm_block3: 4900 frames, 172 unique states
+
+Cluster population statistics:
+  Non-empty clusters  : 200
+  Empty clusters      : 0
+  Min population      : 7
+  Max population      : 68
+  Mean population     : 34.3
+  Median population   : 33.0
+  Std population      : 11.9
+
+Top-10 most populated clusters:
+   Cluster     Pop      Frac    Medoid     TIC-1     TIC-2
+        66      68    0.0099      6439     1.279    -0.302
+       144      64    0.0093      2504     1.465    -0.255
+        14      63    0.0092       504    -0.932     1.541
+        62      63    0.0092      6579     1.247    -0.164
+        94      61    0.0089      6720     0.926    -0.227
+        51      61    0.0089       308    -0.854     0.711
+         1      60    0.0087      1741    -0.920    -1.378
+        56      58    0.0085       822    -0.635     1.603
+       116      58    0.0085       263    -1.032     0.758
+        19      57    0.0083       622    -0.627     1.583
+
+Outputs in /Users/bry_lee/Desktop/protein_simulation/WT_extended_simulation/wt_analysis_pkg/independent_local_matrices/block1_3/clustering/:
+  labels_all_blocks.npy       — combined cluster labels (6860,)
+  msm_block1_labels.npy        — per-block labels
+  msm_block3_labels.npy        — per-block labels
+  medoid_indices.npy          — medoid frame indices (200,)
+  medoid_tica_coords.npy      — medoid TICA coordinates (200, 20)
+  (distance matrix computed in memory, not saved to disk)
+
+Plots:
+  kmedoids_tic1_vs_tic2.png
+  kmedoids_population_histogram.png
+  kmedoids_tic_pairs.png
+  kmedoids_block_timeseries.png

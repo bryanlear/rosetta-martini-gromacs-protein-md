@@ -1,0 +1,37 @@
+Step 1 — Feature Extraction Summary
+==================================================
+
+Topology:  /Users/bry_lee/Desktop/protein_simulation/WT_extended_simulation/wt_analysis_pkg/reference/conf_replica_00.gro
+Blocks:    ['msm_block1.xtc', 'msm_block3.xtc']
+BB stride: 10
+Native contact cutoff: 8.0 Å
+
+Domain boundaries:
+  DI: resid 1–450
+  DII: resid 451–900
+  DIII: resid 901–1350
+  DIV: resid 1351–2016
+
+
+msm_block1:
+  pairwise_dist              (1960, 20301)
+  native_Q                   (1960, 11)
+  dihedrals                  (1960, 4026)
+  rg                         (1960, 5)
+  interdomain_dist           (1960, 6)
+
+msm_block3:
+  pairwise_dist              (4900, 20301)
+  native_Q                   (4900, 11)
+  dihedrals                  (4900, 4026)
+  rg                         (4900, 5)
+  interdomain_dist           (4900, 6)
+
+Combined (all blocks):  (6860, 24349)
+
+Feature columns breakdown:
+  pairwise_dist     = BB subsampled pw-distances (stride 10)
+  native_Q          = fraction of native contacts (total, intra-domain, cross-domain)
+  dihedrals         = sin/cos of BB pseudo-dihedral angles
+  rg                = radius of gyration (total + per-domain)
+  interdomain_dist  = centroid-centroid distances between domains

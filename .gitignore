@@ -6,4 +6,11 @@ replot_no_id.py
 .DS_Store
 
 # Generated analysis outputs (keep scripts/configs in git; ignore results)
-markov_analysis/WT/block1_3/
+
+# Keep this folder tracked, but ignore heavy binary artifacts inside it
+markov_analysis/WT/block1_3/**/*.npy
+markov_analysis/WT/block1_3/**/*.npz
+markov_analysis/WT/block1_3/**/*.h5
+markov_analysis/WT/block1_3/**/*.hdf5
+markov_analysis/WT/block1_3/**/*.pkl
+markov_analysis/WT/block1_3/**/*.pickle
