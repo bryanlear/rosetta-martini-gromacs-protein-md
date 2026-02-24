@@ -1,3 +1,9 @@
 backmap_cg2at/
 em/
 replot_no_id.py
+
+# macOS metadata
+.DS_Store
+
+# Generated analysis outputs (keep scripts/configs in git; ignore results)
+markov_analysis/WT/block1_3/
