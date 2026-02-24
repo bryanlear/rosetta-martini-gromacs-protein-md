@@ -1,0 +1,6 @@
+coord scn5a_af.pdb
+radius /Users/bry_lee/hole2/share/hole2/rad/simple.rad
+cpoint 7.717 16.236 -10.274
+cvect 0 0 1
+sphpdb hole.sph
+end

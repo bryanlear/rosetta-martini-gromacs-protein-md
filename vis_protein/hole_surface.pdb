@@ -1,0 +1,62 @@
+ *** Program sph_process (replacing sphqpt) ***
+ Reads a .sph file produced by hole
+ option SPHPDB which contains sphere centre info,
+ and processes it to a either dot surface or a number of other options
+ either as a dot or grid representation
+ Written by Oliver Smart at Birkbeck College from 1996.
+ Copyright 1996,1997 Oliver Smart 
+ Copyright 2004 Oliver Smart 
+ Copyright 2014-2015 SmartSci Limited, All rights reserved.
+ 
+ For help on HOLE suite see  http://www.holeprogram.org/
+ 
+ HOLE release 2.3.1 (01 February 2023) 
+ 
+ usage subject to Apache License, Version 2.0 
+ see http://www.apache.org/licenses/LICENSE-2.0 
+                     (help message start)
+ sph_process works on .sph file produced by PDBSPH option in hole.
+ This file is then converted either to:
+ (a) a dot or spaghetti surface - qpt format 
+ (b) an .sos input file for the sos_triangle program to 
+     finally make a solid surface 
+ (c) PEG option (to be written)
+ 
+ Usage:  sph_process (-qpt) (-nocen) (-sos) ...  input_file output_file
+ options: 
+  -qpt:  produce a dot surface to qpt file (default)
+  -sos:  produce a .sos file for use by sos_triangle 
+  -dotden D: use a dot density of D used by -qpt and-sos options
+             D should be between 5 and 30 the higher the
+             value the more dots. Default is 10. 
+  -nocen: do not produce centre line (-qpt only) 
+  -spaghetti (X): produce a spaghetti rather than a dot 
+                  surface (for -qpt only 
+                  controlled by X the grid density 
+                  A X value of 2.0 will produce a rather
+                   rough surface, 1.3 a rather dense surface
+                  default is 1.8 a reasonable compromise.
+                  N.B. procedure takes much longer than  dot surface.
+  -rover Rover: use an override radius of Rover angs.
+              every sphere read will be assigned radius R
+              instead of individual radii
+  -ignore_small (Rignore): ignore any spheres with a radius
+                           less than Rignore. If argument
+                           found then a default 1.15angs
+                           used unless a value is specified
+  -colour (Rlow Rmid): produce a coloured surface
+                       surface will be 
+                       red for pore radii < Rlow 
+                       green for Rlow < pore radii < Rmid
+                       blue  for pore radii > Rmid
+                       default Rlow = 1.15 angs
+                       default Rmid = 2.30 angs
+                       (for connolly use effective radius
+                        of slab rather than pore radius
+  -color same as -colour for yanks
+  -peg Rplus Rminus ThetaPEG ThetaNON
+       Graphical output - specify with -sosout for .sph file
+                          with accessible spheres in it
+                          defaults to drawing sections to qpt
+ ERROR 
+ must specify output filename and this cannot begin with a -
