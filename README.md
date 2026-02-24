@@ -370,11 +370,11 @@ cd /extended_simulation && /anaconda3/bin/martinize2 \
 
 The WT 12-replica ladder was fragmented into 3 blocks:
 
-- **Local MSM 1**: Replicas 0, 1, and 2. Block_1 is bounded by 3.2% exchange rate at interface (2, 3).
+- **WT MSM Block 1**: Replicas 0, 1, and 2. Block_1 is bounded by 3.2% exchange rate at interface (2, 3).
 
-- **Local MSM 2**: Replicas 3 and 4. Block_2 is bounded by 3.2% exchange rate at interface (2, 3) and 3.8% exchange rate at interface (4, 5).
+- **WT MSM Block 2**: Replicas 3 and 4. Block_2 is bounded by 3.2% exchange rate at interface (2, 3) and 3.8% exchange rate at interface (4, 5).
 
-- **Local MSM 3**: Replicas 5, 6, 7, 8, 9, 10, and 11. Block_3 is bounded by 3.8% exchange rate at interface (4, 5). All subsequent interfaces maintain acceptance rates above 12.0%.
+- **WT MSM Block 3**: Replicas 5, 6, 7, 8, 9, 10, and 11. Block_3 is bounded by 3.8% exchange rate at interface (4, 5). All subsequent interfaces maintain acceptance rates above 12.0%.
 
 ***Block_2 was excluded after local transition count matrices step***
 
@@ -423,6 +423,34 @@ $H(\pi_{rev})\approx 0.9519$
 
 Flatter and rugged energy landscape $\rightarrow$ disordered conformation/unfolded/not stable
 
+
 | | |
 |---|---|
 | ![fe_wt](markov_analysis/WT/free_energy/msm_block1/fes_rmsd_vs_rg.png) | ![fe_wt](markov_analysis/WT/free_energy/msm_block3/fes_rmsd_vs_rg.png) |
+
+![counting](markov_analysis/WT/free_energy/comparison/comparison_rmsd_vs_rg.png)
+
+---
+
+### MUTANT
+
+Bottlenecks and way worse than WT:
+
+![bottleneck](markov_analysis/mutant/acceptance_ratio.png)
+
+![bottleneck](markov_analysis/mutant/pca_mutant_06_07.png)
+
+- **Mutant MSM Block 1 (Native Basin)**: Replicas 0 and 1.
+
+- **Mutant MSM Block 2 (Intermediate Basin)**: Replicas 3 and 4.
+
+- **Mutant MSM Block 3 (Unfolded Basin)**: Replicas 7, 8, 9, 10, and 11.
+
+
+![fck_1](markov_analysis/mutant/independent_local_matrices/free_energy/msm_block1/fes_rmsd_vs_rg.png)
+
+| | |
+|---|---|
+| ![fck_2](markov_analysis/mutant/independent_local_matrices/free_energy/msm_block2/fes_rmsd_vs_rg.png) | ![fck_3](markov_analysis/mutant/independent_local_matrices/free_energy/msm_block3/fes_rmsd_vs_rg.png) |
+
+![fck_4](markov_analysis/mutant/independent_local_matrices/free_energy/comparison/comparison_rmsd_vs_rg.png)
