@@ -6,9 +6,9 @@ This repository contains a multi-scale computational workflow as a mechanistic h
 
 ---
 
-### Mutant:
-
-![wt](protein_simulations/variant_1/mutant_final.png)
+| Wild type | Mutant |
+|:---------:|:------:|
+| ![wt](protein_simulations/variant_1/wild_type_final.png) | ![mutant](protein_simulations/variant_1/mutant_final.png) |
 
 ## Methodology
 
@@ -453,4 +453,4 @@ Bottlenecks and way worse than WT:
 
 --- 
 
-To calculate difference matrix (WT vs Mutant block 1 and block 3), WT was ran again with the same block composition as mutant. 
+To calculate difference matrix (WT vs Mutant block 1 and block 3), WT was analyzed again with the same block composition as mutant. 
