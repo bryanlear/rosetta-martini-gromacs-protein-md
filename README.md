@@ -1,14 +1,10 @@
 
 
-## Project Overview
+## Introduction:
 
-This repository contains a multi-scale computational workflow designed to substantiate the pathogenicity (or lack thereof) of variants classified as pathogenic by my own automated ACMG/AMP Bayesian variant classification pipeline: [VarClass](https://www.varclass.com) 
+This repository contains a multi-scale computational workflow as a mechanistic hypothesis-generating layer for variants classified by an automated [ACMG/AMP Bayesian variant classification pipeline](https://www.varclass.com). It combines mutation modeling, Martini 3 corase-grained simulations, membrane construction, back-mapping to all-atom resolution, GROMACS MD, data analysis. Rather than treating MD as standalone evidence, the workflow is meant to be interpreted in the presence of prior (biological/functional/clinical) context. It aims to explore whether a variant could effect protein structure, stability, flexbility thus generating structutal/mechanistic hypotheses that may compliment but not replace, curated evidence/experimental data or validation.
 
-The main target is to provide a mechanistic basis for variants previously classified as pathogenic within the pipeline's Bayesian scoring framework.
-
-### Wild-Type:
-
-![wt](protein_simulations/variant_1/wild_type_final.png)
+---
 
 ### Mutant:
 
