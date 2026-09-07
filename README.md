@@ -452,5 +452,3 @@ Bottlenecks and way worse than WT:
 ![fck_4](markov_analysis/mutant/independent_local_matrices/free_energy/comparison/comparison_rmsd_vs_rg.png)
 
 --- 
-
-To calculate difference matrix (WT vs Mutant block 1 and block 3), WT was analyzed again with the same block composition as mutant. 
